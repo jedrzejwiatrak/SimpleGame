@@ -52,7 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Data\AspNetRoles.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AspNetUserClaims.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AspNetUserLogins.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AspNetUsers.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Characters.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\C__MigrationHistory.cs">
       <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Items.cs">
@@ -74,6 +89,15 @@
       <DependentUpon>MainDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Players.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_helpdiagrams_Result.cs">
+      <DependentUpon>MainDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sysdiagrams.cs">
       <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

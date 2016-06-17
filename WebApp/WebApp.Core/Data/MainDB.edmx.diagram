@@ -5,11 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1dfedc71fc7641949f61ba55a5efdfcf" Name="Diagram1">
-        <EntityTypeShape EntityType="SimpleGameModel.Characters" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="SimpleGameModel.Items" Width="1.5" PointX="5.25" PointY="1.25" />
-        <EntityTypeShape EntityType="SimpleGameModel.Players" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="SimpleGameModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SimpleGameModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="SimpleGameModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="SimpleGameModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="SimpleGameModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="SimpleGameModel.Characters" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="SimpleGameModel.Items" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="SimpleGameModel.Players" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SimpleGameModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" />
+        <AssociationConnector Association="SimpleGameModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SimpleGameModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="SimpleGameModel.FK_Characters_Players" />
         <AssociationConnector Association="SimpleGameModel.FK_Items_Characters" />
+        <AssociationConnector Association="SimpleGameModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

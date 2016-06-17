@@ -10,6 +10,7 @@ using WebApp.Core.Data;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class PlayersController : Controller
     {
         private MainDB db = new MainDB();
@@ -46,7 +47,7 @@ namespace WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Nick,Email,Password")] Players players)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Nick,Email,Password")] Players players)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Nick,Email,Password")] Players players)
+        public ActionResult Edit([Bind(Include = "FirstName,LastName,Nick,Email,Password")] Players players)
         {
             if (ModelState.IsValid)
             {

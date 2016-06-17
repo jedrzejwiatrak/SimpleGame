@@ -10,6 +10,7 @@ using WebApp.Core.Data;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CharactersController : Controller
     {
         private MainDB db = new MainDB();
@@ -48,7 +49,7 @@ namespace WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,PlayerId,HealthPoint,StaminaPoint,Attack,Deffense")] Characters characters)
+        public ActionResult Create([Bind(Include = "Name,PlayerId,HealthPoint,StaminaPoint,Attack,Deffense")] Characters characters)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +83,7 @@ namespace WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,PlayerId,HealthPoint,StaminaPoint,Attack,Deffense")] Characters characters)
+        public ActionResult Edit([Bind(Include = "Name,PlayerId,HealthPoint,StaminaPoint,Attack,Deffense")] Characters characters)
         {
             if (ModelState.IsValid)
             {
