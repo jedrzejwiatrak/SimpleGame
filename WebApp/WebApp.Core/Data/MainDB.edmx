@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SimpleGameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SimpleGameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Characters">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PlayerId" Type="int" Nullable="false" />
           <Property Name="HealthPoint" Type="int" Nullable="false" />
@@ -21,7 +21,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AttackBonus" Type="int" Nullable="false" />
           <Property Name="DefenseBonus" Type="int" Nullable="false" />
@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Nick" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -75,51 +75,63 @@
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SimpleGameModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MainDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Characters" EntityType="SimpleGameModel.Characters" />
+          <EntitySet Name="Items" EntityType="SimpleGameModel.Items" />
+          <EntitySet Name="Players" EntityType="SimpleGameModel.Players" />
+          <AssociationSet Name="FK_Characters_Players" Association="SimpleGameModel.FK_Characters_Players">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Characters" Association="SimpleGameModel.FK_Items_Characters">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Characters">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PlayerId" Type="Int32" Nullable="false" />
           <Property Name="HealthPoint" Type="Int32" Nullable="false" />
           <Property Name="StaminaPoint" Type="Int32" Nullable="false" />
           <Property Name="Attack" Type="Int32" Nullable="false" />
           <Property Name="Deffense" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Players" Relationship="Self.FK_Characters_Players" FromRole="Characters" ToRole="Players" />
-          <NavigationProperty Name="Items" Relationship="Self.FK_Items_Characters" FromRole="Characters" ToRole="Items" />
+          <NavigationProperty Name="Players" Relationship="SimpleGameModel.FK_Characters_Players" FromRole="Characters" ToRole="Players" />
+          <NavigationProperty Name="Items" Relationship="SimpleGameModel.FK_Items_Characters" FromRole="Characters" ToRole="Items" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AttackBonus" Type="Int32" Nullable="false" />
           <Property Name="DefenseBonus" Type="Int32" Nullable="false" />
           <Property Name="CharacterId" Type="Int32" />
-          <NavigationProperty Name="Characters" Relationship="Self.FK_Items_Characters" FromRole="Items" ToRole="Characters" />
+          <NavigationProperty Name="Characters" Relationship="SimpleGameModel.FK_Items_Characters" FromRole="Items" ToRole="Characters" />
         </EntityType>
         <EntityType Name="Players">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Characters" Relationship="Self.FK_Characters_Players" FromRole="Players" ToRole="Characters" />
+          <Property Name="Nick" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="SimpleGameModel.FK_Characters_Players" FromRole="Players" ToRole="Characters" />
         </EntityType>
         <Association Name="FK_Characters_Players">
-          <End Role="Players" Type="Self.Players" Multiplicity="1" />
-          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <End Type="SimpleGameModel.Players" Role="Players" Multiplicity="1" />
+          <End Type="SimpleGameModel.Characters" Role="Characters" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Players">
               <PropertyRef Name="Id" />
@@ -130,8 +142,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Items_Characters">
-          <End Role="Characters" Type="Self.Characters" Multiplicity="0..1" />
-          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <End Type="SimpleGameModel.Characters" Role="Characters" Multiplicity="0..1" />
+          <End Type="SimpleGameModel.Items" Role="Items" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="Id" />
@@ -141,19 +153,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MainDB" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Characters" EntityType="Self.Characters" />
-          <EntitySet Name="Items" EntityType="Self.Items" />
-          <EntitySet Name="Players" EntityType="Self.Players" />
-          <AssociationSet Name="FK_Characters_Players" Association="Self.FK_Characters_Players">
-            <End Role="Players" EntitySet="Players" />
-            <End Role="Characters" EntitySet="Characters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Items_Characters" Association="Self.FK_Items_Characters">
-            <End Role="Characters" EntitySet="Characters" />
-            <End Role="Items" EntitySet="Items" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -163,36 +162,36 @@
           <EntitySetMapping Name="Characters">
             <EntityTypeMapping TypeName="SimpleGameModel.Characters">
               <MappingFragment StoreEntitySet="Characters">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-                <ScalarProperty Name="HealthPoint" ColumnName="HealthPoint" />
-                <ScalarProperty Name="StaminaPoint" ColumnName="StaminaPoint" />
-                <ScalarProperty Name="Attack" ColumnName="Attack" />
                 <ScalarProperty Name="Deffense" ColumnName="Deffense" />
+                <ScalarProperty Name="Attack" ColumnName="Attack" />
+                <ScalarProperty Name="StaminaPoint" ColumnName="StaminaPoint" />
+                <ScalarProperty Name="HealthPoint" ColumnName="HealthPoint" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="SimpleGameModel.Items">
               <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AttackBonus" ColumnName="AttackBonus" />
-                <ScalarProperty Name="DefenseBonus" ColumnName="DefenseBonus" />
                 <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+                <ScalarProperty Name="DefenseBonus" ColumnName="DefenseBonus" />
+                <ScalarProperty Name="AttackBonus" ColumnName="AttackBonus" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="SimpleGameModel.Players">
               <MappingFragment StoreEntitySet="Players">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Nick" ColumnName="Nick" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nick" ColumnName="Nick" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1dfedc71fc7641949f61ba55a5efdfcf" Name="Diagram1">
-        <EntityTypeShape EntityType="SimpleGameModel.Characters" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SimpleGameModel.Items" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SimpleGameModel.Players" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="SimpleGameModel.FK_Characters_Players" ManuallyRouted="false" />
-        <AssociationConnector Association="SimpleGameModel.FK_Items_Characters" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SimpleGameModel.Characters" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="SimpleGameModel.Items" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="SimpleGameModel.Players" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="SimpleGameModel.FK_Characters_Players" />
+        <AssociationConnector Association="SimpleGameModel.FK_Items_Characters" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
