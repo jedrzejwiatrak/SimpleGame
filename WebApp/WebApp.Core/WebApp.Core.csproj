@@ -101,6 +101,8 @@
       <DependentUpon>MainDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CharacterParametersService.cs" />
+    <Compile Include="Services\Interfaces\ICharacterParametersService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
